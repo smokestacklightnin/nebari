@@ -12,7 +12,7 @@ resource "helm_release" "argo-workflows" {
   namespace  = var.namespace
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-workflows"
-  version    = "0.22.9"
+  version    = "0.42.7"
 
   values = concat([
     file("${path.module}/values.yaml"),
