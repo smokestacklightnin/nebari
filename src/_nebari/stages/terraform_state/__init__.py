@@ -12,7 +12,11 @@ from _nebari import utils
 from _nebari.provider import terraform
 from _nebari.provider.cloud import azure_cloud
 from _nebari.stages.base import NebariTerraformStage
-from _nebari.stages.tf_objects import NebariConfig, NebariTerraformRequiredProvider
+from _nebari.stages.tf_objects import (
+    NebariConfig,
+    NebariTerraformRequiredProvider,
+    NebariTerraformRequiredVersion,
+)
 from _nebari.utils import (
     AZURE_TF_STATE_RESOURCE_GROUP_SUFFIX,
     construct_azure_resource_group_name,
@@ -175,6 +179,7 @@ class TerraformStateStage(NebariTerraformStage):
         resources = [
             NebariConfig(self.config),
             NebariTerraformRequiredProvider(self.config),
+            NebariTerraformRequiredVersion(self.config),
         ]
         if self.config.provider == schema.ProviderEnum.gcp:
             return resources + [

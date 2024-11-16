@@ -3,6 +3,7 @@ from _nebari.provider.terraform import (
     Provider,
     RequiredProvider,
     Resource,
+    Terraform,
     TerraformBackend,
 )
 from _nebari.utils import (
@@ -125,6 +126,10 @@ def NebariTerraformState(directory: str, nebari_config: schema.Main):
 
 def NebariTerraformRequiredProvider(nebari_config: schema.Main):
     return RequiredProvider("null", source="hashicorp/null", version="3.2.3")
+
+
+def NebariTerraformRequiredVersion(nebari_config: schema.Main):
+    return Terraform(required_version=">= 1.0")
 
 
 def NebariConfig(nebari_config: schema.Main):
