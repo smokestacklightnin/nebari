@@ -1,4 +1,10 @@
-from _nebari.provider.terraform import Data, Provider, Resource, TerraformBackend
+from _nebari.provider.terraform import (
+    Data,
+    Provider,
+    RequiredProvider,
+    Resource,
+    TerraformBackend,
+)
 from _nebari.utils import (
     AZURE_TF_STATE_RESOURCE_GROUP_SUFFIX,
     construct_azure_resource_group_name,
@@ -115,6 +121,10 @@ def NebariTerraformState(directory: str, nebari_config: schema.Main):
         )
     else:
         raise NotImplementedError("state not implemented")
+
+
+def NebariTerraformRequiredProvider(nebari_config: schema.Main):
+    return RequiredProvider("null", source="hashicorp/null", version="3.2.3")
 
 
 def NebariConfig(nebari_config: schema.Main):
