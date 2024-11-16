@@ -1,3 +1,4 @@
+from _nebari import constants
 from _nebari.provider.terraform import (
     Data,
     Provider,
@@ -129,7 +130,7 @@ def NebariTerraformRequiredProvider(nebari_config: schema.Main):
 
 
 def NebariTerraformRequiredVersion(nebari_config: schema.Main):
-    return Terraform(required_version=">= 1.0")
+    return Terraform(required_version=constants.TERRAFORM_VERSION)
 
 
 def NebariConfig(nebari_config: schema.Main):
