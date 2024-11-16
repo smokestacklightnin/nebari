@@ -35,3 +35,12 @@ AWS_DEFAULT_REGION = "us-east-1"
 AZURE_DEFAULT_REGION = "Central US"
 GCP_DEFAULT_REGION = "us-central1"
 DO_DEFAULT_REGION = "nyc3"
+
+# TERRAFORM REQUIRED PROVIDERS
+REQUIRED_PROVIDERS = {
+    "null": {
+        "_name": "null",
+        "source": "hashicorp/null",
+        "version": "3.2.3",
+    }
+}

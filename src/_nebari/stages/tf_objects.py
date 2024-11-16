@@ -126,7 +126,7 @@ def NebariTerraformState(directory: str, nebari_config: schema.Main):
 
 
 def NebariTerraformRequiredProvider(nebari_config: schema.Main):
-    return RequiredProvider("null", source="hashicorp/null", version="3.2.3")
+    return RequiredProvider(**constants.REQUIRED_PROVIDERS["null"])
 
 
 def NebariTerraformRequiredVersion(nebari_config: schema.Main):
