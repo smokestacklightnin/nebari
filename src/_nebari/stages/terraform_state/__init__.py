@@ -178,7 +178,7 @@ class TerraformStateStage(NebariTerraformStage):
     def tf_objects(self) -> List[Dict]:
         resources = [
             NebariConfig(self.config),
-            NebariTerraformRequiredProvider(self.config),
+            NebariTerraformRequiredProvider("null", self.config),
             NebariTerraformRequiredVersion(self.config),
         ]
         if self.config.provider == schema.ProviderEnum.gcp:

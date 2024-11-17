@@ -42,5 +42,15 @@ REQUIRED_PROVIDERS = {
         "_name": "null",
         "source": "hashicorp/null",
         "version": "3.2.3",
-    }
+    },
+    "helm": {
+        "_name": "helm",
+        "source": "hashicorp/helm",
+        "version": "2.1.2",
+    },
+    "kubernetes": {
+        "_name": "kubernetes",
+        "source": "hashicorp/kubernetes",
+        "version": "2.20.0",
+    },
 }

@@ -240,10 +240,7 @@ class NebariTerraformStage(NebariStage):
         return []
 
     def tf_objects(self) -> List[Dict]:
-        return [
-            NebariTerraformState(self.name, self.config),
-            # NebariTerraformRequiredVersion(self.config),
-        ]
+        return [NebariTerraformState(self.name, self.config)]
 
     def render(self) -> Dict[pathlib.Path, str]:
         contents = {

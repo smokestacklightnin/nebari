@@ -125,8 +125,8 @@ def NebariTerraformState(directory: str, nebari_config: schema.Main):
         raise NotImplementedError("state not implemented")
 
 
-def NebariTerraformRequiredProvider(nebari_config: schema.Main):
-    return RequiredProvider(**constants.REQUIRED_PROVIDERS["null"])
+def NebariTerraformRequiredProvider(name: str, nebari_config: schema.Main):
+    return RequiredProvider(**constants.REQUIRED_PROVIDERS[name])
 
 
 def NebariTerraformRequiredVersion(nebari_config: schema.Main):
