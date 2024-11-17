@@ -7,7 +7,8 @@ from _nebari.stages.base import NebariTerraformStage
 from _nebari.stages.tf_objects import (
     NebariHelmProvider,
     NebariKubernetesProvider,
-    NebariTerraformState,
+    NebariTerraformRequiredProvider,
+    NebariTerraformRequiredVersion,
 )
 from nebari import schema
 from nebari.hookspecs import NebariStage, hookimpl
@@ -64,7 +65,10 @@ class KubernetesInitializeStage(NebariTerraformStage):
 
     def tf_objects(self) -> List[Dict]:
         return [
-            NebariTerraformState(self.name, self.config),
+            *super().tf_objects(),
+            NebariTerraformRequiredVersion(self.config),
+            NebariTerraformRequiredProvider("helm", self.config),
+            NebariTerraformRequiredProvider("kubernetes", self.config),
             NebariKubernetesProvider(self.config),
             NebariHelmProvider(self.config),
         ]
