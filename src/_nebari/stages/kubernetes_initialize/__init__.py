@@ -4,11 +4,7 @@ from typing import Any, Dict, List, Optional, Type
 from pydantic import model_validator
 
 from _nebari.stages.base import NebariTerraformStage
-from _nebari.stages.tf_objects import (
-    NebariHelmProvider,
-    NebariKubernetesProvider,
-    NebariTerraformState,
-)
+from _nebari.stages.tf_objects import NebariHelmProvider, NebariKubernetesProvider
 from nebari import schema
 from nebari.hookspecs import NebariStage, hookimpl
 
@@ -64,7 +60,7 @@ class KubernetesInitializeStage(NebariTerraformStage):
 
     def tf_objects(self) -> List[Dict]:
         return [
-            NebariTerraformState(self.name, self.config),
+            *super().tf_objects(),
             NebariKubernetesProvider(self.config),
             NebariHelmProvider(self.config),
         ]
