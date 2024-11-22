@@ -4,7 +4,7 @@ resource "helm_release" "keycloak" {
 
   repository = "https://codecentric.github.io/helm-charts"
   chart      = "keycloak"
-  version    = "15.0.2"
+  version    = "15.1.0"
 
   values = concat([
     # https://github.com/codecentric/helm-charts/blob/keycloak-15.0.2/charts/keycloak/values.yaml
