@@ -4,7 +4,7 @@ resource "helm_release" "autoscaler" {
 
   repository = "https://kubernetes.github.io/autoscaler"
   chart      = "cluster-autoscaler"
-  version    = "9.19.0"
+  version    = "9.43.2"
 
   values = concat([
     jsonencode({
