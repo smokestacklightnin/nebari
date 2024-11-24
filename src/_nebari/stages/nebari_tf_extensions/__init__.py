@@ -1,7 +1,11 @@
 from typing import Any, Dict, List, Optional, Type
 
 from _nebari.stages.base import NebariTerraformStage
-from _nebari.stages.tf_objects import NebariHelmProvider, NebariKubernetesProvider
+from _nebari.stages.tf_objects import (
+    NebariHelmProvider,
+    NebariKubernetesProvider,
+    NebariOpentofuRequiredProvider,
+)
 from nebari import schema
 from nebari.hookspecs import NebariStage, hookimpl
 
