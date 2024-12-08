@@ -1,3 +1,4 @@
+import pathlib
 from typing import Any, Dict, List, Optional, Type
 
 from _nebari.stages.base import NebariTerraformStage
@@ -5,6 +6,7 @@ from _nebari.stages.tf_objects import (
     NebariHelmProvider,
     NebariKubernetesProvider,
     NebariOpentofuRequiredProvider,
+    NebariOpentofuRequiredVersion,
     NebariTerraformState,
 )
 from nebari import schema
@@ -80,6 +82,20 @@ class NebariTFExtensionsStage(NebariTerraformStage):
             "forwardauth_middleware_name": stage_outputs[
                 "stages/07-kubernetes-services"
             ]["forward-auth-middleware"]["value"]["name"],
+        }
+
+    def render(self) -> Dict[pathlib.Path, str]:
+        contents = super().render()
+        breakpoint()
+        return {
+            **contents,
+            **self.tf_objects_in_module(
+                "modules/nebariextension",
+                (
+                    NebariOpentofuRequiredVersion(self.config),
+                    NebariOpentofuRequiredProvider("keycloak", self.config),
+                ),
+            ),
         }
 
 
