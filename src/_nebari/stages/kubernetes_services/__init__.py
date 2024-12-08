@@ -1,5 +1,6 @@
 import enum
 import json
+import pathlib
 import sys
 import time
 from typing import Any, Dict, List, Optional, Type, Union
@@ -14,6 +15,7 @@ from _nebari.stages.tf_objects import (
     NebariHelmProvider,
     NebariKubernetesProvider,
     NebariOpentofuRequiredProvider,
+    NebariOpentofuRequiredVersion,
     NebariTerraformState,
 )
 from _nebari.utils import (
@@ -735,6 +737,20 @@ class KubernetesServicesStage(NebariTerraformStage):
                     f"ERROR: Service {service_name} DOWN when checking url={service_url}"
                 )
                 sys.exit(1)
+
+    def render(self) -> Dict[pathlib.Path, str]:
+        contents = super().render()
+        breakpoint()
+        return {
+            **contents,
+            **self.tf_objects_in_module(
+                "modules/kubernetes/services/keycloak-client",
+                (
+                    NebariOpentofuRequiredVersion(self.config),
+                    NebariOpentofuRequiredProvider("keycloak", self.config),
+                ),
+            ),
+        }
 
 
 @hookimpl
