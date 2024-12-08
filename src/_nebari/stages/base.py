@@ -244,11 +244,20 @@ class NebariTerraformStage(NebariStage):
             NebariOpentofuRequiredVersion(self.config),
         ]
 
+    def tf_objects_in_module(self, module_path, tf_objects=None):
+        return {
+            (
+                self.stage_prefix / module_path / "_nebari.tf.json"
+            ): opentofu.tf_render_objects(
+                tf_objects if tf_objects is not None else self.tf_objects()
+            ),
+        }
+
     def render(self) -> Dict[pathlib.Path, str]:
         contents = {
             (self.stage_prefix / "_nebari.tf.json"): opentofu.tf_render_objects(
                 self.tf_objects()
-            )
+            ),
         }
         for root, dirs, filenames in os.walk(self.template_directory):
             for filename in filenames:
