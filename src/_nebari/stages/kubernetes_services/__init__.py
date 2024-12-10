@@ -740,7 +740,6 @@ class KubernetesServicesStage(NebariTerraformStage):
 
     def render(self) -> Dict[pathlib.Path, str]:
         contents = super().render()
-        breakpoint()
         return {
             **contents,
             **self.tf_objects_in_module(
